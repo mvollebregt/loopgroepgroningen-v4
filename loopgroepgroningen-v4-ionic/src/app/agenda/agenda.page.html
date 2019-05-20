@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Agenda
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item *ngFor="let evenement of evenementen | async">
+            <div slot="start" class="lg-item-title">
+                {{ evenement.datum }}
+            </div>
+            <ion-label>
+                {{ evenement.naam }}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

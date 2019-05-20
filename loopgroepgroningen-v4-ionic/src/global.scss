@@ -10,6 +10,8 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
+// theme
+
 ion-toolbar,
 ion-menu ion-content {
   --background: var(--lg-grijs);
@@ -23,4 +25,12 @@ ion-content {
 
 ion-card-content {
   color: var(--lg-zwart);
+}
+
+
+// extra elementen
+
+.lg-item-title {
+  font-weight: bold;
+  font-size: 14px;
 }
