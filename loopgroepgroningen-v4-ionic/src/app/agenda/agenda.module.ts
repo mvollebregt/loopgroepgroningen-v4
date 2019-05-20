@@ -6,6 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {AgendaPage} from './agenda.page';
+import {FormattingModule} from '../shared/formatting/formatting.module';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormattingModule
   ],
   declarations: [AgendaPage]
 })

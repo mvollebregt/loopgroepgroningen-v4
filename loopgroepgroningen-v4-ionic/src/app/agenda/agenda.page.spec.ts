@@ -1,10 +1,11 @@
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AgendaPage} from './agenda.page';
 import {EvenementService} from './evenement.service';
 import {Subject} from 'rxjs';
 import {Evenement} from '../api';
+import {FormattingModule} from '../shared/formatting/formatting.module';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('AgendaPage', () => {
@@ -20,7 +21,8 @@ describe('AgendaPage', () => {
     TestBed.configureTestingModule({
       declarations: [AgendaPage],
       providers: [{provide: EvenementService, useValue: evenementServiceSpy}],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      imports: [FormattingModule],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

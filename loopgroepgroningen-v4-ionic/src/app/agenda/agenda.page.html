@@ -14,7 +14,7 @@
     <ion-list>
         <ion-item *ngFor="let evenement of evenementen | async">
             <div slot="start" class="lg-item-title">
-                {{ evenement.datum }}
+                {{ evenement.datum | lgDate: 'mini'}}
             </div>
             <ion-label>
                 {{ evenement.naam }}
