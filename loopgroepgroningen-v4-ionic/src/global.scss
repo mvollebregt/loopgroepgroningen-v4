@@ -9,3 +9,18 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+ion-toolbar,
+ion-menu ion-content {
+  --background: var(--lg-grijs);
+  --ion-item-background: var(--lg-grijs);
+}
+
+ion-content {
+  --background: var(--lg-oranje);
+  --ion-item-background: var(--lg-wit);
+}
+
+ion-card-content {
+  color: var(--lg-zwart);
+}
