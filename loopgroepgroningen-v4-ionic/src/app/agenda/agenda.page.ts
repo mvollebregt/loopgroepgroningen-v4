@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {EvenementService} from './evenement.service';
 import {Observable} from 'rxjs';
-import {Evenement} from '../api'
+import {Evenement} from '../api';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-agenda',
@@ -9,13 +10,17 @@ import {Evenement} from '../api'
 })
 export class AgendaPage implements OnInit {
 
-  private evenementen: Observable<Evenement[]>;
+  evenementen: Observable<Evenement[]>;
 
   constructor(private evenementService: EvenementService) {
   }
 
   ngOnInit(): void {
     this.evenementen = this.evenementService.getEvenementen();
+  }
+
+  getGroupName(evenement: Evenement): string {
+    return moment(evenement.datum).format('MMMM');
   }
 
 }

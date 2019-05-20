@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {AgendaPage} from './agenda.page';
 import {FormattingModule} from '../shared/formatting/formatting.module';
+import {GroupedListModule} from '../shared/grouped-list/grouped-list.module';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    FormattingModule
+    FormattingModule,
+    GroupedListModule
   ],
   declarations: [AgendaPage]
 })

@@ -6,13 +6,14 @@ import {EvenementService} from './evenement.service';
 import {Subject} from 'rxjs';
 import {Evenement} from '../api';
 import {FormattingModule} from '../shared/formatting/formatting.module';
+import {GroupedListModule} from '../shared/grouped-list/grouped-list.module';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('AgendaPage', () => {
 
   let component: AgendaPage;
   let fixture: ComponentFixture<AgendaPage>;
-  let evenementen = new Subject<Evenement[]>();
+  const evenementen = new Subject<Evenement[]>();
 
   beforeEach(async(() => {
     const evenementServiceSpy = createSpyObj('EvenementService', ['getEvenementen']);
@@ -21,7 +22,7 @@ describe('AgendaPage', () => {
     TestBed.configureTestingModule({
       declarations: [AgendaPage],
       providers: [{provide: EvenementService, useValue: evenementServiceSpy}],
-      imports: [FormattingModule],
+      imports: [FormattingModule, GroupedListModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
@@ -49,5 +50,5 @@ describe('AgendaPage', () => {
     expect(items[0].textContent).toContain('Geboorte van een topper');
     expect(items[1].textContent).toContain('14');
     expect(items[1].textContent).toContain('Een dag later');
-  })
+  });
 });

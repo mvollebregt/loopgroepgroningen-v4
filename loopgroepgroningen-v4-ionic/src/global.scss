@@ -18,9 +18,18 @@ ion-menu ion-content {
   --ion-item-background: var(--lg-grijs);
 }
 
+ion-menu .list-ios,
+ion-menu .list-md {
+  background: var(--lg-grijs);
+}
+
 ion-content {
   --background: var(--lg-oranje);
   --ion-item-background: var(--lg-wit);
+}
+
+.list-ios, .list-md {
+  background: var(--lg-oranje);
 }
 
 ion-card-content {

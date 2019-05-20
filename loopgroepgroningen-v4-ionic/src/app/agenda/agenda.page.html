@@ -11,15 +11,15 @@
 
 <ion-content>
 
-    <ion-list>
-        <ion-item *ngFor="let evenement of evenementen | async">
+    <lg-grouped-list [items]="evenementen | async" [getGroupName]="getGroupName">
+        <ng-template let-evenement>
             <div slot="start" class="lg-item-title">
                 {{ evenement.datum | lgDate: 'mini'}}
             </div>
             <ion-label>
                 {{ evenement.naam }}
             </ion-label>
-        </ion-item>
-    </ion-list>
+        </ng-template>
+    </lg-grouped-list>
 
 </ion-content>
