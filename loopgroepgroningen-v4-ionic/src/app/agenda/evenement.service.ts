@@ -1,18 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Evenement} from '../api';
+import {AngularFirestore} from '@angular/fire/firestore';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EvenementService {
 
+  constructor(private db: AngularFirestore) {
+  }
+
   getEvenementen(): Observable<Evenement[]> {
-    return of([
-      {datum: '2019-06-15', naam: 'Leijenloop Opeinde'},
-      {datum: '2019-06-29', naam: 'Lustrum'},
-      {datum: '2019-06-29', naam: 'KaFieRun'}
-    ]);
+    let today = moment().format('YYYY-MM-dd');
+    return this.db.collection<Evenement>('evenementen', ref => ref
+      .orderBy('datum')
+      .where('datum', '>=', today)
+    ).valueChanges();
   }
 
 }
