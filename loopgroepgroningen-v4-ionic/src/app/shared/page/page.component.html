@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ng-container *ngIf="back; else menuButton">
+                <ion-back-button class="ios-only" [text]="back"></ion-back-button>
+                <ion-back-button class="md-only" text=""></ion-back-button>
+            </ng-container>
+            <ng-template #menuButton>
+                <ion-menu-button></ion-menu-button>
+            </ng-template>
+        </ion-buttons>
+        <ion-title>
+            {{ pageTitle }}
+        </ion-title>
+        <ion-buttons *ngIf="actionIcon" class="ios-only mobile-only" slot="end">
+            <ion-button [routerLink]="actionRouterLink">
+                <ion-icon slot="icon-only" [name]="actionIcon"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ng-content></ng-content>
+
+    <ion-fab *ngIf="actionIcon" class="md-only mobile-only" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button [routerLink]="actionRouterLink">
+            <ion-icon [name]="actionIcon"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

@@ -36,14 +36,43 @@ ion-card-content {
   color: var(--lg-zwart);
 }
 
-// ios vs md
+// page
+
+lg-page {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  contain: layout size style;
+  overflow: hidden;
+  z-index: 0;
+}
 
 .md .ios-only,
-.ios .md-only
-  //.split-pane-visible .ios-only,
-  //.split-pane-visible .md-only
+.ios .md-only,
+.split-pane-visible .mobile-only
 {
   display: none;
+}
+
+.menu-action-area {
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+}
+
+ion-split-pane:not(.split-pane-visible) .menu-action-area {
+  display: none;
+}
+
+.can-go-back ion-back-button {
+  display: block;
 }
 
 // extra elementen

@@ -7,6 +7,14 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
+
+        <div class="menu-action-area">
+          <ion-button *ngIf="PageService.action | async as action" [routerLink]="action.routerLink">
+            <ion-icon slot="start" [name]="action.icon"></ion-icon>
+            {{action.title}}
+          </ion-button>
+        </div>
+
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
