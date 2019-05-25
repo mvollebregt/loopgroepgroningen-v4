@@ -30,6 +30,7 @@ ion-content {
 
 .list-ios, .list-md {
   background: var(--lg-oranje);
+  padding: 0;
 }
 
 ion-card-content {
@@ -76,6 +77,14 @@ ion-split-pane:not(.split-pane-visible) .menu-action-area {
 }
 
 // extra elementen
+
+.explanation {
+  color: var(--lg-lichter);
+}
+
+.mb-24 {
+  margin-bottom: 24px !important;
+}
 
 .lg-item-title {
   font-weight: bold;

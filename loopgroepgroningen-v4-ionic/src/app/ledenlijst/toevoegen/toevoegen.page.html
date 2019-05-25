@@ -1,5 +1,42 @@
-<lg-page back="Ledenlijst" pageTitle="Toevoegen">
+<lg-page back="Ledenlijst" pageTitle="Lid toevoegen">
 
-    Toevoegen works
+    <ion-card>
+        <ion-card-content>
+
+            <p class="explanation mb-24">Vul voornaam, achternaam en e-mailadres van het nieuwe lid in.</p>
+
+            <ion-list class="mb-24">
+                <ion-item>
+                    <ion-label position="stacked">Voornaam</ion-label>
+                    <ion-input [required]="true"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Achternaam</ion-label>
+                    <ion-input [required]="true"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">E-mail</ion-label>
+                    <ion-input [required]="true"></ion-input>
+                </ion-item>
+            </ion-list>
+
+            <p class="explanation mb-24">Het nieuwe lid ontvangt een e-mail waarmee hij toegang krijgt tot app en
+                website.</p>
+
+            <ion-toolbar>
+                <ion-buttons slot="end">
+                    <ion-button type="button">
+                        <ion-icon slot="start" name="close"></ion-icon>
+                        Annuleren
+                    </ion-button>
+                    <ion-button type="submit" color="primary" fill="solid">
+                        <ion-icon slot="start" name="add"></ion-icon>
+                        Lid toevoegen
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+
+        </ion-card-content>
+    </ion-card>
 
 </lg-page>
