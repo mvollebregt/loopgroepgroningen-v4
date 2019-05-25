@@ -36,6 +36,15 @@ ion-card-content {
   color: var(--lg-zwart);
 }
 
+// ios vs md
+
+.md .ios-only,
+.ios .md-only
+  //.split-pane-visible .ios-only,
+  //.split-pane-visible .md-only
+{
+  display: none;
+}
 
 // extra elementen
 

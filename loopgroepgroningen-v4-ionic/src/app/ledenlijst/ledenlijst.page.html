@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Ledenlijst
+        </ion-title>
+        <ion-buttons class="ios-only" slot="end">
+            <ion-button routerLink="toevoegen">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-fab class="md-only" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="toevoegen">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

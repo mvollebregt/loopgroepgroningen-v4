@@ -5,7 +5,7 @@ import {Evenement} from '../api';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-agenda',
+  selector: 'lg-agenda',
   templateUrl: './agenda.page.html'
 })
 export class AgendaPage implements OnInit {

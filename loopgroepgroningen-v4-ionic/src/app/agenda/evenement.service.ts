@@ -13,7 +13,7 @@ export class EvenementService {
   }
 
   getEvenementen(): Observable<Evenement[]> {
-    let today = moment().format('YYYY-MM-dd');
+    const today = moment().format('YYYY-MM-dd');
     return this.db.collection<Evenement>('evenementen', ref => ref
       .orderBy('datum')
       .where('datum', '>=', today)
