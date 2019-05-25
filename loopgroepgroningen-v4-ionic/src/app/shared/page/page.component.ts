@@ -1,11 +1,11 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {PageService} from './page.service';
 
 @Component({
   selector: 'lg-page',
   templateUrl: './page.component.html'
 })
-export class PageComponent implements OnInit, OnChanges {
+export class PageComponent implements OnChanges {
 
   @Input() pageTitle: string;
   @Input() back: string;

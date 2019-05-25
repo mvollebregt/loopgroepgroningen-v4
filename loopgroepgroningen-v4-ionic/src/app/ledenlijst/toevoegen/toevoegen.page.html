@@ -1,42 +1,39 @@
 <lg-page back="Ledenlijst" pageTitle="Lid toevoegen">
 
-    <ion-card>
-        <ion-card-content>
+  <ion-card>
+    <ion-card-content>
 
-            <p class="explanation mb-24">Vul voornaam, achternaam en e-mailadres van het nieuwe lid in.</p>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-            <ion-list class="mb-24">
-                <ion-item>
-                    <ion-label position="stacked">Voornaam</ion-label>
-                    <ion-input [required]="true"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="stacked">Achternaam</ion-label>
-                    <ion-input [required]="true"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="stacked">E-mail</ion-label>
-                    <ion-input [required]="true"></ion-input>
-                </ion-item>
-            </ion-list>
+        <p class="explanation mb-24">Vul voornaam, achternaam en e-mailadres van het nieuwe lid in.</p>
 
-            <p class="explanation mb-24">Het nieuwe lid ontvangt een e-mail waarmee hij toegang krijgt tot app en
-                website.</p>
+        <ion-list class="mb-24">
+          <lg-input formControlName="voornaam" label="Voornaam" error="Vul de voornaam in">
+          </lg-input>
+          <lg-input formControlName="achternaam" label="Achternaam" error="Vul de achternaam in">
+          </lg-input>
+          <lg-input formControlName="email" label="E-mail" error="Vul een geldig e-mailadres in">
+          </lg-input>
+        </ion-list>
 
-            <ion-toolbar>
-                <ion-buttons slot="end">
-                    <ion-button type="button">
-                        <ion-icon slot="start" name="close"></ion-icon>
-                        Annuleren
-                    </ion-button>
-                    <ion-button type="submit" color="primary" fill="solid">
-                        <ion-icon slot="start" name="add"></ion-icon>
-                        Lid toevoegen
-                    </ion-button>
-                </ion-buttons>
-            </ion-toolbar>
+        <p class="explanation mb-24">Het nieuwe lid ontvangt een e-mail waarmee hij toegang krijgt tot app en
+          website.</p>
 
-        </ion-card-content>
-    </ion-card>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button type="button">
+              <ion-icon slot="start" name="close"></ion-icon>
+              Annuleren
+            </ion-button>
+            <ion-button type="submit" color="primary" fill="solid" [disabled]="form.invalid">
+              <ion-icon slot="start" name="add"></ion-icon>
+              Lid toevoegen
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
 
 </lg-page>

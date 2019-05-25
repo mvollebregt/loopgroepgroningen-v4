@@ -1,0 +1,6 @@
+<ion-item>
+  <ion-label position="stacked" [color]="control.untouched || control.valid ? undefined : 'danger'">
+    {{control.untouched || control.valid ? label : error}}
+  </ion-label>
+  <ion-input [formControl]="control" (blur)="onBlur()"></ion-input>
+</ion-item>
