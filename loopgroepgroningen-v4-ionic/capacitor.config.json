@@ -1,0 +1,7 @@
+{
+  "appId": "com.github.mvollebregt.loopgroepgroningenv4",
+  "appName": "Loopgroep Groningen",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
