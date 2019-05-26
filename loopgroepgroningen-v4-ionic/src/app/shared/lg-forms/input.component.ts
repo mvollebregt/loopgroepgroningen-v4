@@ -31,6 +31,7 @@ export class InputComponent implements ControlValueAccessor, Validator, OnDestro
 
   @Input() label: string;
   @Input() error: string;
+  @Input() type = 'text';
 
   control: AbstractControl;
 

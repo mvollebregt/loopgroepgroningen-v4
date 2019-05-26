@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <p class="explanation mb-24">Vul voornaam, achternaam en e-mailadres van het nieuwe lid in.</p>
+  <p class="explanation mb-24">{{errorCode}}</p>
+
+  <ion-list class="mb-24">
+    <lg-input formControlName="email" label="E-mail" type="email" error="Vul een geldig e-mailadres in">
+    </lg-input>
+    <lg-input formControlName="password" label="Wachtwoord" type="password" error="Vul een wachtwoord in">
+    </lg-input>
+  </ion-list>
+
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button type="button" (click)="onCancel()">
+        <ion-icon slot="start" name="close"></ion-icon>
+        Annuleren
+      </ion-button>
+      <ion-button type="submit" color="primary" fill="solid" [disabled]="form.invalid">
+        <ion-icon slot="start" name="log-in"></ion-icon>
+        Inloggen
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</form>

@@ -2,5 +2,5 @@
   <ion-label position="stacked" [color]="control.untouched || control.valid ? undefined : 'danger'">
     {{control.untouched || control.valid ? label : error}}
   </ion-label>
-  <ion-input [formControl]="control" (blur)="onBlur()"></ion-input>
+  <ion-input [formControl]="control" (blur)="onBlur()" [type]="type" [inputmode]="type"></ion-input>
 </ion-item>

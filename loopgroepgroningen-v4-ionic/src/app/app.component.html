@@ -15,6 +15,10 @@
           </ion-button>
         </div>
 
+        <p>
+          Ingelogd als {{ (authService.getCurrentUser() | async)?.email}}
+        </p>
+
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
@@ -24,6 +28,12 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item (click)="authService.signOut()">
+            <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-label>
+              Uitloggen
+            </ion-label>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

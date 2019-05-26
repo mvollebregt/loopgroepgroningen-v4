@@ -1,7 +1,15 @@
 service cloud.firestore {
+
+  function loggedIn() {
+    return request.auth.uid != null;
+  }
+
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write;
+
+    match /evenementen/{evenement} {
+      allow read: if loggedIn();
+      allow write: if false;
     }
+
   }
 }

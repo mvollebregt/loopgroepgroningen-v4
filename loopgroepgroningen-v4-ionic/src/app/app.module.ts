@@ -13,6 +13,8 @@ import * as moment from 'moment';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AuthModule} from './shared/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +24,9 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AuthModule
   ],
   providers: [
     StatusBar,
