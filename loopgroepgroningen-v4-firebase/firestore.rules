@@ -4,10 +4,14 @@ service cloud.firestore {
     return request.auth.uid != null;
   }
 
+  function isLid() {
+    return loggedIn() && request.auth.token.lid == true
+  }
+
   match /databases/{database}/documents {
 
     match /evenementen/{evenement} {
-      allow read: if loggedIn();
+      allow read: if isLid();
       allow write: if false;
     }
 

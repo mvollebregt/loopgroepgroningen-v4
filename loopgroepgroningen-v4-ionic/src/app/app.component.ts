@@ -19,7 +19,8 @@ export class AppComponent {
     {title: 'Home', url: '/home', icon: 'home'},
     {title: 'List', url: '/list', icon: 'list'},
     {title: 'Agenda', url: '/agenda', icon: 'calendar'},
-    {title: 'Ledenlijst', url: '/ledenlijst', icon: 'contacts'}
+    {title: 'Ledenlijst', url: '/ledenlijst', icon: 'contacts'},
+    {title: 'Beheer', url: '/beheer', icon: 'cog'}
   ];
 
   currentUser: Observable<User | null>;
@@ -30,7 +31,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private authPromptService: AuthPromptService,
     public authService: AuthService,
-    public PageService: PageService,
+    public PageService: PageService
   ) {
     this.initializeApp();
   }
@@ -41,5 +42,12 @@ export class AppComponent {
       this.splashScreen.hide();
       this.authPromptService.promptWheneverSignedOut();
     });
+  }
+
+  test() {
+    this.authService.listUsers().subscribe(console.log);
+    // this.authService.getCurrentUser().pipe(
+    //   tap(currentUser => this.authService.grantPermission(currentUser ? currentUser.uid: 'bogus', 'lid'))
+    // ).subscribe(console.log);
   }
 }
