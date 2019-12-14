@@ -1,0 +1,34 @@
+<lg-page back="Agenda" pageTitle="Evenement toevoegen">
+
+  <ion-card>
+    <ion-card-content>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <p class="explanation mb-24">Vul de gegevens van het evenement in.</p>
+
+        <ion-list class="mb-24">
+          <lg-input formControlName="datum" label="Datum" error="Vul een geldige datum in" type="date">
+          </lg-input>
+          <lg-input formControlName="naam" label="Achternaam" error="Vul de naam van het evenement in">
+          </lg-input>
+        </ion-list>
+
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button type="button" (click)="back()">
+              <ion-icon slot="start" name="close"></ion-icon>
+              Annuleren
+            </ion-button>
+            <ion-button type="submit" color="primary" fill="solid" [disabled]="form.invalid">
+              <ion-icon slot="start" name="add"></ion-icon>
+              Evenement toevoegen
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+</lg-page>

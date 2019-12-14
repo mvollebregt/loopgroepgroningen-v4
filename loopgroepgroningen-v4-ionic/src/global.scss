@@ -18,6 +18,10 @@ ion-menu ion-content {
   --ion-item-background: var(--lg-grijs);
 }
 
+ion-card ion-toolbar {
+  --background: transparent;
+}
+
 ion-menu .list-ios,
 ion-menu .list-md {
   background: var(--lg-grijs);

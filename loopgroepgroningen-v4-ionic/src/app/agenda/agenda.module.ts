@@ -8,12 +8,12 @@ import {IonicModule} from '@ionic/angular';
 import {AgendaPage} from './agenda.page';
 import {FormattingModule} from '../shared/formatting/formatting.module';
 import {GroupedListModule} from '../shared/grouped-list/grouped-list.module';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AgendaPage
-  }
+  {path: '', component: AgendaPage},
+  {path: 'toevoegen', loadChildren: './toevoegen/evenement-toevoegen.module#EvenementToevoegenPageModule'},
+  {path: ':id', loadChildren: './detail/evenement-detail.module#EvenementDetailPageModule'}
 ];
 
 @NgModule({
@@ -23,7 +23,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     FormattingModule,
-    GroupedListModule
+    GroupedListModule,
+    SharedModule
   ],
   declarations: [AgendaPage]
 })

@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ToevoegenPage} from './toevoegen.page';
+import {LidToevoegenPage} from './lid-toevoegen.page';
 import {SharedModule} from '../../shared/shared.module';
 import {LgFormsModule} from '../../shared/lg-forms/lg-forms.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: ToevoegenPage
+    component: LidToevoegenPage
   }
 ];
 
@@ -17,7 +17,7 @@ const routes: Routes = [
     LgFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ToevoegenPage]
+  declarations: [LidToevoegenPage]
 })
-export class ToevoegenPageModule {
+export class LidToevoegenPageModule {
 }

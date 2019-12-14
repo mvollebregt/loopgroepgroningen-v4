@@ -5,11 +5,13 @@ import {GroupedListComponent} from './grouped-list.component';
 
 @Component({
   template: `
-      <lg-grouped-list [items]="items" [getGroupName]="getGroupName">
-          <ng-template let-item>
-              {{item}}
-          </ng-template>
-      </lg-grouped-list>`
+    <lg-grouped-list [items]="items" [getGroupName]="getGroupName">
+      <ion-item>
+        <ng-template let-item>
+          {{item}}
+        </ng-template>
+      </ion-item>
+    </lg-grouped-list>`
 })
 class TestHostComponent {
   items: string[];

@@ -33,5 +33,4 @@ export class GroupedListComponent<T> implements OnChanges {
       }
     }
   }
-
 }

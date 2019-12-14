@@ -1,22 +1,22 @@
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ToevoegenPage} from './toevoegen.page';
+import {EvenementToevoegenPage} from './evenement-toevoegen.page';
 
 describe('ToevoegenPage', () => {
-  let component: ToevoegenPage;
-  let fixture: ComponentFixture<ToevoegenPage>;
+  let component: EvenementToevoegenPage;
+  let fixture: ComponentFixture<EvenementToevoegenPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ToevoegenPage],
+      declarations: [EvenementToevoegenPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToevoegenPage);
+    fixture = TestBed.createComponent(EvenementToevoegenPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

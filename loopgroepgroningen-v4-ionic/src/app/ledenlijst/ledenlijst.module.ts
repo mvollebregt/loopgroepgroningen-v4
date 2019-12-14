@@ -5,7 +5,7 @@ import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
   {path: '', component: LedenlijstPage},
-  {path: 'toevoegen', loadChildren: './toevoegen/toevoegen.module#ToevoegenPageModule'}
+  {path: 'toevoegen', loadChildren: './toevoegen/lid-toevoegen.module#LidToevoegenPageModule'}
 ];
 
 @NgModule({

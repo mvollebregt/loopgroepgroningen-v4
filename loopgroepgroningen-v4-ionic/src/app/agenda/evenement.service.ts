@@ -3,21 +3,22 @@ import {Observable} from 'rxjs';
 import {Evenement} from '../api';
 import {AngularFirestore} from '@angular/fire/firestore';
 import * as moment from 'moment';
+import {BaseFirestoreService} from '../shared/firestore/base-firestore.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class EvenementService {
+export class EvenementService extends BaseFirestoreService<Evenement> {
 
-  constructor(private db: AngularFirestore) {
+  constructor(db: AngularFirestore) {
+    super(db, 'evenementen');
   }
 
-  getEvenementen(): Observable<Evenement[]> {
-    const today = moment().format('YYYY-MM-dd');
-    return this.db.collection<Evenement>('evenementen', ref => ref
+  getAll(): Observable<Evenement[]> {
+    const today = moment().format('YYYY-MM-DD');
+    return super.getAll(ref => ref
       .orderBy('datum')
-      .where('datum', '>=', today)
-    ).valueChanges();
+      .where('datum', '>=', today));
   }
-
 }

@@ -3,9 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'lg-toevoegen',
-  templateUrl: './toevoegen.page.html'
+  templateUrl: './lid-toevoegen.page.html'
 })
-export class ToevoegenPage {
+export class LidToevoegenPage {
 
   form: FormGroup;
 

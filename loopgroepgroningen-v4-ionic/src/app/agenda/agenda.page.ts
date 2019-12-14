@@ -16,7 +16,7 @@ export class AgendaPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.evenementen = this.evenementService.getEvenementen();
+    this.evenementen = this.evenementService.getAll();
   }
 
   getGroupName(evenement: Evenement): string {

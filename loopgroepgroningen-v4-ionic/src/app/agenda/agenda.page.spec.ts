@@ -40,8 +40,8 @@ describe('AgendaPage', () => {
 
   it('moet de geladen evenementen tonen', () => {
     evenementen.next([
-      {datum: '1976-07-13', naam: 'Geboorte van een topper'},
-      {datum: '1976-07-14', naam: 'Een dag later'}
+      {id: '1', datum: '1976-07-13', naam: 'Geboorte van een topper'},
+      {id: '2', datum: '1976-07-14', naam: 'Een dag later'}
     ]);
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('ion-item');
