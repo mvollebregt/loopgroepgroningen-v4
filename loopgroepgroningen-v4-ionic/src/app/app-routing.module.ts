@@ -2,9 +2,7 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', loadChildren: './home/home.module#HomePageModule'},
-  {path: 'list', loadChildren: './list/list.module#ListPageModule'},
+  {path: '', redirectTo: 'agenda', pathMatch: 'full'},
   {path: 'agenda', loadChildren: './agenda/agenda.module#AgendaPageModule'},
   {path: 'ledenlijst', loadChildren: './ledenlijst/ledenlijst.module#LedenlijstPageModule'},
   {path: 'beheer', loadChildren: './beheer/beheer.module#BeheerPageModule'}

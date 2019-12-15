@@ -16,8 +16,6 @@ import {Observable} from 'rxjs';
 export class AppComponent {
 
   appPages = [
-    {title: 'Home', url: '/home', icon: 'home'},
-    {title: 'List', url: '/list', icon: 'list'},
     {title: 'Agenda', url: '/agenda', icon: 'calendar'},
     {title: 'Ledenlijst', url: '/ledenlijst', icon: 'contacts'},
     {title: 'Beheer', url: '/beheer', icon: 'cog'}
