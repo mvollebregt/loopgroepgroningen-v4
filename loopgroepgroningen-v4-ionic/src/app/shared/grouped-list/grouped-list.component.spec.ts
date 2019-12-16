@@ -8,7 +8,9 @@ import {GroupedListComponent} from './grouped-list.component';
     <lg-grouped-list [items]="items" [getGroupName]="getGroupName">
       <ion-item>
         <ng-template let-item>
-          {{item}}
+          <ion-item>
+            {{item}}
+          </ion-item>
         </ng-template>
       </ion-item>
     </lg-grouped-list>`

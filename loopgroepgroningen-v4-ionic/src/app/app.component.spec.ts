@@ -7,6 +7,10 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {RouterTestingModule} from '@angular/router/testing';
 
 import {AppComponent} from './app.component';
+import {AuthPromptService} from './shared/auth/auth-prompt.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireFunctions} from '@angular/fire/functions';
+import createSpyObj = jasmine.createSpyObj;
 
 describe('AppComponent', () => {
 
@@ -16,15 +20,18 @@ describe('AppComponent', () => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+    platformSpy = jasmine.createSpyObj('Platform', {ready: platformReadySpy});
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: StatusBar, useValue: statusBarSpy },
-        { provide: SplashScreen, useValue: splashScreenSpy },
-        { provide: Platform, useValue: platformSpy },
+        {provide: AngularFireAuth, useValue: {}},
+        {provide: AngularFireFunctions, useValue: {}},
+        {provide: AuthPromptService, useValue: createSpyObj('AuthPromptService', ['promptWheneverSignedOut'])},
+        {provide: StatusBar, useValue: statusBarSpy},
+        {provide: SplashScreen, useValue: splashScreenSpy},
+        {provide: Platform, useValue: platformSpy},
       ],
       imports: [ RouterTestingModule.withRoutes([])],
     }).compileComponents();
@@ -49,10 +56,10 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(3);
-    expect(menuItems[0].textContent).toContain('Home');
-    expect(menuItems[1].textContent).toContain('List');
-    expect(menuItems[2].textContent).toContain('Agenda');
+    expect(menuItems.length).toEqual(5);
+    expect(menuItems[0].textContent).toContain('Agenda');
+    expect(menuItems[1].textContent).toContain('Ledenlijst');
+    expect(menuItems[2].textContent).toContain('Beheer');
   });
 
   it('should have urls', async () => {
@@ -60,10 +67,10 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(3);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/list');
-    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/agenda');
+    expect(menuItems.length).toEqual(5);
+    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/agenda');
+    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/ledenlijst');
+    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/beheer');
   });
 
 });

@@ -16,8 +16,8 @@ describe('AgendaPage', () => {
   const evenementen = new Subject<Evenement[]>();
 
   beforeEach(async(() => {
-    const evenementServiceSpy = createSpyObj('EvenementService', ['getEvenementen']);
-    evenementServiceSpy.getEvenementen.and.returnValue(evenementen);
+    const evenementServiceSpy = createSpyObj('EvenementService', ['getAll']);
+    evenementServiceSpy.getAll.and.returnValue(evenementen);
 
     TestBed.configureTestingModule({
       declarations: [AgendaPage],
