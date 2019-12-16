@@ -1,3 +1,50 @@
-<lg-page back="Agenda" [pageTitle]="(evenement | async)?.naam">
+<lg-page back="Agenda" [pageTitle]="evenement?.naam || 'Evenement'">
+
+  <ion-card *ngIf="evenement">
+    <ion-card-header>
+      <ion-card-subtitle>{{evenement.datum}}</ion-card-subtitle>
+      <ion-card-title>{{evenement.naam}}</ion-card-title>
+      <ion-item>
+        <ion-toggle slot="end" [checked]="evenement.deelname"></ion-toggle>
+        <ion-label>Ik doe mee</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-toggle slot="end"></ion-toggle>
+        <ion-label>Ik kan mensen meenemen in de auto</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-toggle slot="end"></ion-toggle>
+        <ion-label>Ik ga op eigen gelegenheid</ion-label>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-label>Toon 22 deelnemers</ion-label>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="description event_desc" itemprop="description">
+        <div class="gmail_default">Op zaterdag 21 december gaan we naar de Decemberloop in Peize. Je kunt daar een 5, 10
+          of 15 km lopen (rondjes van 5 km). Er is ook een mogelijkheid tot estafette (3 x 5 km).&nbsp;
+        </div>
+        <div class="gmail_default"><span class="gmail_default">Meer informatie en inschrijven via&nbsp;</span><a
+            href="http://decemberlooppeize.nl/" target="_blank" rel="noopener noreferrer"
+            data-saferedirecturl="https://www.google.com/url?q=http://decemberlooppeize.nl/&amp;source=gmail&amp;ust=1576232199965000&amp;usg=AFQjCNFPA938TCx7WMHplmO2I2dM0F3t4w">http://decemberlooppeize.
+          <wbr>
+          nl/</a>. Voorinschrijving kan t/m 19 december; er is ook na-inschrijving bij de start.&nbsp;
+        </div>
+        <div class="gmail_default">&nbsp;</div>
+        <div class="gmail_default">Geef je op via het evenement op de&nbsp;<a
+            href="https://loopgroepgroningen.nl/index.php/component/jem/event/98-decemberloop-peize" target="_blank"
+            rel="noopener noreferrer"
+            data-saferedirecturl="https://www.google.com/url?q=https://loopgroepgroningen.nl/index.php/component/jem/event/98-decemberloop-peize&amp;source=gmail&amp;ust=1576232199965000&amp;usg=AFQjCNElEw-yAP7QU0V2mxPeZXB9E9ZLig">site</a>&nbsp;of
+          in de app.&nbsp;
+        </div>
+        <div class="gmail_default">&nbsp;</div>
+        <div class="gmail_default">We vertrekken om <strong>9.15</strong><b>&nbsp;uur</b>&nbsp;vanaf de parkeerstrook
+          bij de Gerrit Krolbrug. Als je kunt rijden, meld dit dan in het reactieveld onder het evenement.
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
 </lg-page>

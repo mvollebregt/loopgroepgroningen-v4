@@ -15,7 +15,7 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthModule} from './shared/auth/auth.module';
-import {AngularFireFunctionsModule} from '@angular/fire/functions';
+import {AngularFireFunctionsModule, FUNCTIONS_ORIGIN} from '@angular/fire/functions';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +33,8 @@ import {AngularFireFunctionsModule} from '@angular/fire/functions';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    {provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000'}
   ],
   bootstrap: [AppComponent]
 })

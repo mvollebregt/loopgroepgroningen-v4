@@ -25,8 +25,8 @@ export const listUsers = functions.https.onCall(
       const listUsersResult: ListUsersResult = await admin.auth().listUsers(1000, nextPageToken);
       // TODO: check welke data voor deze gebruiker teruggegeven mag worden
       userRecords.push(...listUsersResult.users.map(user => {
-        const {uid, displayName, customClaims} = user;
-        return {uid, displayName, customClaims};
+        const {uid, displayName, email, customClaims} = user;
+        return {uid, displayName, email, customClaims};
       }));
       nextPageToken = listUsersResult.pageToken;
     } while (nextPageToken);

@@ -11,12 +11,16 @@ export class BaseFirestoreService<T> {
     return this.collectionWithIds(this.db.collection<T>(this.basePath, queryFn));
   }
 
+  get(id: string): Observable<T | undefined> {
+    return this.docWithId(this.db.doc<T>(`${this.basePath}/${id}`));
+  }
+
   save(doc: T): void {
     this.db.collection<T>(this.basePath).add(doc);
   }
 
-  get(id: string): Observable<T | undefined> {
-    return this.docWithId(this.db.doc<T>(`${this.basePath}/${id}`));
+  subcollection<A>(id: string, subcollection: string): BaseFirestoreService<A> {
+    return new BaseFirestoreService<A>(this.db, `${this.basePath}/${id}/${subcollection}`)
   }
 
   private collectionWithIds<T>(collection: AngularFirestoreCollection<T>): Observable<T[]> {
