@@ -4,7 +4,7 @@ import {Observable, throwError} from 'rxjs';
 import {User} from 'firebase';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {Permission} from '../../api';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, take, tap} from 'rxjs/operators';
 import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
@@ -43,5 +43,15 @@ export class AuthService {
 
   listUsers() {
     return this.fns.httpsCallable('listUsers')({});
+  }
+
+  updateCurrentUser() {
+    this.getCurrentUser().pipe(
+      take(1),
+    ).subscribe(user => {
+      if (user) {
+        user.updateProfile({displayName: 'Gebruikersnaam'})
+      }
+    })
   }
 }

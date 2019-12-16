@@ -44,6 +44,7 @@ export class AppComponent {
 
   test() {
     this.authService.listUsers().subscribe(console.log);
+    this.authService.updateCurrentUser();
     // this.authService.getCurrentUser().pipe(
     //   tap(currentUser => this.authService.grantPermission(currentUser ? currentUser.uid: 'bogus', 'lid'))
     // ).subscribe(console.log);
