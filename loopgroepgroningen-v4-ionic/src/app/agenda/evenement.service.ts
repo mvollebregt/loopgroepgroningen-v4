@@ -36,7 +36,12 @@ export class EvenementService extends BaseFirestoreService<Evenement> {
     );
   }
 
-  getDeelnames(evenementId: string): Observable<Deelname[]> {
+  getAllDeelnames(evenementId: string): Observable<Deelname[]> {
     return super.subcollection<Deelname>(evenementId, 'deelnames').getAll();
+  }
+
+  saveDeelname(evenementId: string, deelname: Deelname) {
+    this.authService.doWithCurrentUser(currentUser =>
+      super.subcollection<Deelname>(evenementId, 'deelnames').set(currentUser.uid, deelname));
   }
 }

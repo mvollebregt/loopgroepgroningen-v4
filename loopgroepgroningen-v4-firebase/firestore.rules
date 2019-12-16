@@ -17,7 +17,7 @@ service cloud.firestore {
 
     match /evenementen/{evenement}/deelnames/{user} {
       allow read: if isLid();
-      allow write: if false;
+      allow write: if isLid();
     }
   }
 }

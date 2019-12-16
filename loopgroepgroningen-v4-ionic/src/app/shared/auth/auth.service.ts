@@ -21,6 +21,14 @@ export class AuthService {
     // user.getIdTokenResult(forceRefresh)
   }
 
+  doWithCurrentUser(fn: (user) => void) {
+    return this.getCurrentUser().pipe(take(1)).subscribe(currentUser => {
+      if (currentUser) {
+        return fn(currentUser);
+      }
+    })
+  }
+
   signIn({email, password}: { email: string, password: string }): Promise<UserCredential> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }

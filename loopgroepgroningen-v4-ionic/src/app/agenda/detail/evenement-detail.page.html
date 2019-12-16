@@ -1,19 +1,27 @@
 <lg-page back="Agenda" [pageTitle]="evenement?.naam || 'Evenement'">
 
-  <ion-card *ngIf="evenement">
+  <ion-card *ngIf="evenement" [formGroup]="formGroup">
     <ion-card-header>
       <ion-card-subtitle>{{evenement.datum}}</ion-card-subtitle>
       <ion-card-title>{{evenement.naam}}</ion-card-title>
       <ion-item>
-        <ion-toggle slot="end" [checked]="evenement.deelname"></ion-toggle>
+        <ion-toggle slot="end" formControlName="neemtDeel"></ion-toggle>
         <ion-label>Ik doe mee</ion-label>
       </ion-item>
-      <ion-item>
-        <ion-toggle slot="end"></ion-toggle>
+      <ion-item *ngIf="evenement.deelname?.neemtDeel && evenement.auto">
+        <ion-toggle slot="end" formControlName="eigenAuto"></ion-toggle>
         <ion-label>Ik kan mensen meenemen in de auto</ion-label>
       </ion-item>
-      <ion-item>
-        <ion-toggle slot="end"></ion-toggle>
+      <ion-item *ngIf="evenement.deelname?.neemtDeel && evenement.auto">
+        <ion-toggle slot="end" formControlName="rijdtMee"></ion-toggle>
+        <ion-label>Ik rijd graag met iemand mee</ion-label>
+      </ion-item>
+      <ion-item *ngIf="evenement.deelname?.neemtDeel && evenement.fiets">
+        <ion-toggle slot="end" formControlName="fiets"></ion-toggle>
+        <ion-label>Ik ga op de fiets</ion-label>
+      </ion-item>
+      <ion-item *ngIf="evenement.deelname?.neemtDeel && (evenement.auto || evenement.fiets)">
+        <ion-toggle slot="end" formControlName="eigenGelegenheid"></ion-toggle>
         <ion-label>Ik ga op eigen gelegenheid</ion-label>
       </ion-item>
       <ion-item [button]="true">

@@ -19,7 +19,7 @@ export class EvenementToevoegenPage {
   }
 
   onSubmit(): void {
-    this.evenementService.save(this.form.value);
+    this.evenementService.add(this.form.value);
     this.back();
   }
 

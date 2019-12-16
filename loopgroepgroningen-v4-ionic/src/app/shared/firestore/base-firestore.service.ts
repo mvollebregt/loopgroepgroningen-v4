@@ -15,8 +15,12 @@ export class BaseFirestoreService<T> {
     return this.docWithId(this.db.doc<T>(`${this.basePath}/${id}`));
   }
 
-  save(doc: T): void {
+  add(doc: T): void {
     this.db.collection<T>(this.basePath).add(doc);
+  }
+
+  set(id: string, doc: T): void {
+    this.db.doc<T>(`${this.basePath}/${id}`).set(doc);
   }
 
   subcollection<A>(id: string, subcollection: string): BaseFirestoreService<A> {
