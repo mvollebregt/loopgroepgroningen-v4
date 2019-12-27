@@ -30,7 +30,12 @@ ion-menu .list-md {
 ion-content {
   --background: var(--lg-oranje);
   --ion-item-background: var(--lg-wit);
+
+  ion-item {
+    --background-hover: var(--lg-hover);
+  }
 }
+
 
 .list-ios, .list-md {
   background: var(--lg-oranje);
