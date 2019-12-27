@@ -5,7 +5,7 @@ import {AgendaPage} from './agenda.page';
 import {EvenementService} from './evenement.service';
 import {Subject} from 'rxjs';
 import {Evenement} from '../api';
-import {FormattingModule} from '../shared/formatting/formatting.module';
+import {DateTimeModule} from '../shared/datetime/date-time.module';
 import {GroupedListModule} from '../shared/grouped-list/grouped-list.module';
 import createSpyObj = jasmine.createSpyObj;
 
@@ -22,7 +22,7 @@ describe('AgendaPage', () => {
     TestBed.configureTestingModule({
       declarations: [AgendaPage],
       providers: [{provide: EvenementService, useValue: evenementServiceSpy}],
-      imports: [FormattingModule, GroupedListModule],
+      imports: [DateTimeModule, GroupedListModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();

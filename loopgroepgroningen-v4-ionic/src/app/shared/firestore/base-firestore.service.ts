@@ -24,22 +24,22 @@ export class BaseFirestoreService<T> {
   }
 
   subcollection<A>(id: string, subcollection: string): BaseFirestoreService<A> {
-    return new BaseFirestoreService<A>(this.db, `${this.basePath}/${id}/${subcollection}`)
+    return new BaseFirestoreService<A>(this.db, `${this.basePath}/${id}/${subcollection}`);
   }
 
-  private collectionWithIds<T>(collection: AngularFirestoreCollection<T>): Observable<T[]> {
+  private collectionWithIds<T1>(collection: AngularFirestoreCollection<T1>): Observable<T1[]> {
     return collection.snapshotChanges().pipe(
       map(actions => actions.map(action => (
         {id: action.payload.doc.id, ...action.payload.doc.data() as any}
       ))),
-    )
+    );
   }
 
-  private docWithId<T>(doc: AngularFirestoreDocument<T>): Observable<T | undefined> {
+  private docWithId<T1>(doc: AngularFirestoreDocument<T1>): Observable<T1 | undefined> {
     return doc.snapshotChanges().pipe(
       map(action => {
           const payload = action.payload;
-          return payload.data() ? {id: payload.id, ...payload.data() as any} as T : undefined;
+          return payload.data() ? {id: payload.id, ...payload.data() as any} as T1 : undefined;
         }
       ));
   }

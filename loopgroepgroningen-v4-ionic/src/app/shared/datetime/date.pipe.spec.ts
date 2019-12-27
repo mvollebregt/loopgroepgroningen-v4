@@ -1,10 +1,8 @@
 import {DatePipe} from './date.pipe';
-import * as moment from 'moment';
 
 describe('DatePipe', () => {
 
   const pipe = new DatePipe();
-  moment.locale('nl'); // Dit commando staat ook in de constructor van de app-module.
 
   it('create an instance', () => {
     expect(pipe).toBeTruthy();

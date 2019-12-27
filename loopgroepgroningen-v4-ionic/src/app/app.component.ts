@@ -29,7 +29,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private authPromptService: AuthPromptService,
     public authService: AuthService,
-    public PageService: PageService
+    public pageService: PageService
   ) {
     this.initializeApp();
   }

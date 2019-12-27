@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EvenementService} from './evenement.service';
 import {Observable} from 'rxjs';
 import {Evenement} from '../api';
-import * as moment from 'moment';
+import {DateTime} from 'luxon';
 
 @Component({
   selector: 'lg-agenda',
@@ -20,7 +20,7 @@ export class AgendaPage implements OnInit {
   }
 
   getGroupName(evenement: Evenement): string {
-    return moment(evenement.datum).format('MMMM');
+    return DateTime.fromISO(evenement.datum).toFormat('MMMM');
   }
 
 }

@@ -18,13 +18,13 @@ export class PageComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['actionIcon'] || changes['actionRouterLink'] || changes['actionTitle']) {
+    if (changes.actionIcon || changes.actionRouterLink || changes.actionTitle) {
       this.pageService.setAction(
         this.actionIcon ? {
           icon: this.actionIcon,
           routerLink: this.actionRouterLink,
           title: this.actionTitle
-        } : null)
+        } : null);
     }
   }
 }

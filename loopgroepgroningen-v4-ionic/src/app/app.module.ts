@@ -9,7 +9,6 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
-import * as moment from 'moment';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -39,9 +38,4 @@ import {AngularFireFunctionsModule, FUNCTIONS_ORIGIN} from '@angular/fire/functi
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  constructor() {
-    moment.locale('nl');
-  }
-
 }

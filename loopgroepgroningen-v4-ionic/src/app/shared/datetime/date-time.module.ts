@@ -9,5 +9,5 @@ const exports = [DatePipe];
   imports: [CommonModule],
   exports
 })
-export class FormattingModule {
+export class DateTimeModule {
 }

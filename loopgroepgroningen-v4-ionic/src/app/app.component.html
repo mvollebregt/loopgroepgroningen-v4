@@ -9,7 +9,7 @@
       <ion-content>
 
         <div class="menu-action-area">
-          <ion-button *ngIf="PageService.action | async as action" [routerLink]="action.routerLink">
+          <ion-button *ngIf="pageService.action | async as action" [routerLink]="action.routerLink">
             <ion-icon slot="start" [name]="action.icon"></ion-icon>
             {{action.title}}
           </ion-button>

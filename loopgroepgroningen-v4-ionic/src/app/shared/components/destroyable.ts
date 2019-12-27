@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 
 export class Destroyable implements OnDestroy {
 
-  protected destroy = new Subject<void>()
+  protected destroy = new Subject<void>();
 
   ngOnDestroy(): void {
     this.destroy.next();

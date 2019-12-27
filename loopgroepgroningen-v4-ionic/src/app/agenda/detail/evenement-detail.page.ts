@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EvenementService} from '../evenement.service';
 import {ActivatedRoute} from '@angular/router';
 import {filter, map, switchMap, takeUntil} from 'rxjs/operators';
-import {Evenement} from '../../api'
+import {Evenement} from '../../api';
 import {Destroyable} from '../../shared/components/destroyable';
 import {FormBuilder, FormGroup} from '@angular/forms';
 

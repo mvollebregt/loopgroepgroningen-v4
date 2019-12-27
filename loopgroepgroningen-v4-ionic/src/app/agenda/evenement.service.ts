@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Deelname, Evenement} from '../api';
 import {AngularFirestore} from '@angular/fire/firestore';
-import * as moment from 'moment';
 import {BaseFirestoreService} from '../shared/firestore/base-firestore.service';
 import {AuthService} from '../shared/auth/auth.service';
 import {map, switchMap} from 'rxjs/operators';
+import {DateTime} from 'luxon';
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class EvenementService extends BaseFirestoreService<Evenement> {
   }
 
   getAll(): Observable<Evenement[]> {
-    const today = moment().format('YYYY-MM-DD');
+    const today = DateTime.local().toISODate();
     return super.getAll(ref => ref
       .orderBy('datum')
       .where('datum', '>=', today));

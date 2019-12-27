@@ -26,7 +26,7 @@ export class AuthService {
       if (currentUser) {
         return fn(currentUser);
       }
-    })
+    });
   }
 
   signIn({email, password}: { email: string, password: string }): Promise<UserCredential> {
@@ -40,11 +40,11 @@ export class AuthService {
   grantPermission(uid: string, permission: Permission): Observable<void> {
     const grantPermission = this.fns.httpsCallable('grantPermission');
     // TODO: niet meer hard coden
-    return grantPermission({uid, permission: {'lid': true}}).pipe(
+    return grantPermission({uid, permission: {lid: true}}).pipe(
       tap(console.log),
       catchError(err => {
         console.error(err);
-        return throwError(err)
+        return throwError(err);
       })
     );
   }
@@ -58,8 +58,8 @@ export class AuthService {
       take(1),
     ).subscribe(user => {
       if (user) {
-        user.updateProfile({displayName: 'Gebruikersnaam'})
+        user.updateProfile({displayName: 'Gebruikersnaam'});
       }
-    })
+    });
   }
 }

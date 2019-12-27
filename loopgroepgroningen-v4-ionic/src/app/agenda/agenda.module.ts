@@ -6,7 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {AgendaPage} from './agenda.page';
-import {FormattingModule} from '../shared/formatting/formatting.module';
+import {DateTimeModule} from '../shared/datetime/date-time.module';
 import {GroupedListModule} from '../shared/grouped-list/grouped-list.module';
 import {SharedModule} from '../shared/shared.module';
 
@@ -22,7 +22,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    FormattingModule,
+    DateTimeModule,
     GroupedListModule,
     SharedModule
   ],

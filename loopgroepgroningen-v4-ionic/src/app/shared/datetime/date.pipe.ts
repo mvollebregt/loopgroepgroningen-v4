@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import * as moment from 'moment';
+import {DateTime} from 'luxon';
 
 @Pipe({
   name: 'lgDate'
@@ -7,12 +7,12 @@ import * as moment from 'moment';
 export class DatePipe implements PipeTransform {
 
   private static readonly dateFormats = {
-    mini: 'dd D'
+    mini: 'EEE d'
   };
 
 
   transform(value: any, args?: any): any {
-    return value && moment(value).format(DatePipe.dateFormats[args || 'mini']);
+    return value && DateTime.fromISO(`${value}`).setLocale('nl').toFormat(DatePipe.dateFormats[args || 'mini']);
   }
 
 }
