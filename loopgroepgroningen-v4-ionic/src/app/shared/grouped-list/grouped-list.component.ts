@@ -14,7 +14,7 @@ export class GroupedListComponent<T> implements OnChanges {
   @Input() items: T[];
   @Input() getGroupName: (item: T) => string;
 
-  @ContentChild(TemplateRef) passedInTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef, {static: false}) passedInTemplate: TemplateRef<any>;
 
   groups: Group<T>[];
 
