@@ -2,6 +2,6 @@ import {Trainingsdag} from './trainingsdag';
 
 export interface Trainingsweek {
   weeknummer: number;
-  weektype?: 'O' | 'I' | 'H';
+  weektype?: 'omvang' | 'intensiteit' | 'herstel';
   trainingsdagen: Trainingsdag[];
 }

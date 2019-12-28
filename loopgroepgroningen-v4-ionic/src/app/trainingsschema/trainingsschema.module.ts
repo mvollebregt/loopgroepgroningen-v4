@@ -1,14 +1,16 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {TrainingsschemaPage} from './trainingsschema.page';
+import {SharedModule} from '../shared/shared.module';
+import {RouterModule, Routes} from '@angular/router';
+import {DateTimeModule} from '../shared/datetime/date-time.module';
+
+const routes: Routes = [
+  {path: '', component: TrainingsschemaPage}
+];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule
-  ]
+  declarations: [TrainingsschemaPage],
+  imports: [SharedModule, RouterModule.forChild(routes), DateTimeModule]
 })
-export class TrainingsschemaModule {
+export class TrainingsschemaPageModule {
 }
-

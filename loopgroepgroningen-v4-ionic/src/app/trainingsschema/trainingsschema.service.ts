@@ -15,6 +15,8 @@ import {DateService} from '../shared/datetime/date.service';
 })
 export class TrainingsschemaService {
 
+  static readonly weektypes: ('omvang' | 'intensiteit' | 'herstel')[] = ['omvang', 'intensiteit', 'herstel'];
+
   constructor(private httpClient: HttpClient, private dateService: DateService) {
   }
 
@@ -52,7 +54,7 @@ export class TrainingsschemaService {
           trainingsweek.weeknummer = parseInt(uppercase, 10);
         } else if (uppercase === 'O' || uppercase === 'I' || uppercase === 'H') {
           // Als de cel alleen O, I of H bevat, dan is dat het weektype. Dat slaan we op in de huidige trainingsweek.
-          trainingsweek.weektype = uppercase;
+          trainingsweek.weektype = TrainingsschemaService.weektypes.find(weektype => weektype[0].toUpperCase() === uppercase);
         } else if (uppercase === 'A' || uppercase === 'B' || uppercase === 'C') {
           // Als de cel alleen A, B, of C bevat, betekent dat dat de rest van de regel de alle trainingen voor groep A
           // B of C in de huidige trainingsweek bevat. Deze lezen we in met behulp van de trainingsmetadata.

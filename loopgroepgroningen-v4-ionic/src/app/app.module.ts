@@ -15,6 +15,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthModule} from './shared/auth/auth.module';
 import {AngularFireFunctionsModule, FUNCTIONS_ORIGIN} from '@angular/fire/functions';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import {AngularFireFunctionsModule, FUNCTIONS_ORIGIN} from '@angular/fire/functi
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireFunctionsModule,
-    AuthModule
+    AuthModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

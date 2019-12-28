@@ -1,0 +1,31 @@
+<lg-page pageTitle="Trainingsschema">
+
+  <table *ngIf="trainingsschema | async as trainingsschema">
+    <ng-container *ngFor="let trainingsweek of trainingsschema; let eersteWeek = first">
+      <tr class="weekrij">
+        <td class="week">
+          Week {{trainingsweek.weeknummer}}<span *ngIf="trainingsweek.weektype"> - {{trainingsweek.weektype}}</span>
+          <span *ngIf="eersteWeek"> - A</span>
+        </td>
+        <ng-container *ngIf="eersteWeek">
+          <td class="groep">B</td>
+          <td class="groep">C</td>
+        </ng-container>
+      </tr>
+      <ng-container *ngFor="let trainingsdag of trainingsweek.trainingsdagen; let eigenTraining = last">
+        <tr class="datumrij">
+          <td colspan="3" class="datum lg-item-title">
+            {{trainingsdag.titel || (trainingsdag.datum | lgDate: 'fullDay')}}
+          </td>
+        </tr>
+        <tr class="omschrijvingrij" [class.eigen-training]="eigenTraining">
+          <td *ngFor="let groep of ['A', 'B', 'C']">
+            <div class="omschrijving">{{trainingsdag[groep].omschrijving}}</div>
+            <div class="locatie" *ngIf="toonLocatie(trainingsdag, groep)"
+                 [class.volle-regel]="locatieVolleRegel(trainingsdag, groep)">{{trainingsdag[groep].locatie}}</div>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </table>
+</lg-page>

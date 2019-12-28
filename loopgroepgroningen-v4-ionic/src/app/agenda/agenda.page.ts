@@ -20,7 +20,7 @@ export class AgendaPage implements OnInit {
   }
 
   getGroupName(evenement: Evenement): string {
-    return DateTime.fromISO(evenement.datum).toFormat('MMMM');
+    return DateTime.fromISO(evenement.datum).setLocale('nl').toFormat('MMMM');
   }
 
 }

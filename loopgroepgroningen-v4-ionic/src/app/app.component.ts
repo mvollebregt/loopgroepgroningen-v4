@@ -17,6 +17,7 @@ export class AppComponent {
 
   appPages = [
     {title: 'Agenda', url: '/agenda', icon: 'calendar'},
+    {title: 'Trainingsschema', url: '/trainingsschema', icon: 'grid'},
     {title: 'Ledenlijst', url: '/ledenlijst', icon: 'contacts'},
     {title: 'Beheer', url: '/beheer', icon: 'cog'}
   ];

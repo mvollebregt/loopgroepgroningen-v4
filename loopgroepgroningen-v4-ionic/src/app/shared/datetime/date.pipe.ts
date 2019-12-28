@@ -7,9 +7,9 @@ import {DateTime} from 'luxon';
 export class DatePipe implements PipeTransform {
 
   private static readonly dateFormats = {
-    mini: 'EEE d'
+    mini: 'EEE d',
+    fullDay: 'EEEE d MMM'
   };
-
 
   transform(value: any, args?: any): any {
     return value && DateTime.fromISO(`${value}`).setLocale('nl').toFormat(DatePipe.dateFormats[args || 'mini']);

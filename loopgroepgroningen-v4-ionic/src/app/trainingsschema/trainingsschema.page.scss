@@ -1,0 +1,54 @@
+table {
+  width: 100%;
+  border-bottom: 1px solid #C0C0C0;
+  table-layout: fixed;
+}
+
+.volle-regel, .week {
+  white-space: nowrap;
+}
+
+.groep {
+  text-align: center;
+}
+
+.omschrijvingrij {
+  border-bottom: 1px solid #C0C0C0;
+}
+
+.weekrij {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  height: 40px;
+  color: #262626;
+}
+
+tr:not(.weekrij) td {
+  background-color: white;
+}
+
+.datumrij td {
+  padding-top: 10px;
+  //text-align: center;
+}
+
+.omschrijvingrij td {
+  padding-bottom: 10px;
+  vertical-align: top;
+}
+
+.omschrijvingrij.eigen-training td {
+  padding-bottom: 16px;
+}
+
+.locatie {
+  font-size: 14px;
+  color: #808080;
+}
+
+td {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
