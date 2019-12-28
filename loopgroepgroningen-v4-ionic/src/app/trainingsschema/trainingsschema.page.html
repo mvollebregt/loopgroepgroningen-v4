@@ -5,21 +5,21 @@
       <tr class="weekrij">
         <td class="week">
           Week {{trainingsweek.weeknummer}}<span *ngIf="trainingsweek.weektype"> - {{trainingsweek.weektype}}</span>
-          <span *ngIf="eersteWeek"> - A</span>
+          <span *ngIf="eersteWeek && groepen.length === 3"> - A</span>
         </td>
-        <ng-container *ngIf="eersteWeek">
+        <ng-container *ngIf="eersteWeek && groepen.length === 3">
           <td class="groep">B</td>
           <td class="groep">C</td>
         </ng-container>
       </tr>
       <ng-container *ngFor="let trainingsdag of trainingsweek.trainingsdagen; let eigenTraining = last">
         <tr class="datumrij">
-          <td colspan="3" class="datum lg-item-title">
+          <td [attr.colspan]="groepen.length" class="datum lg-item-title">
             {{trainingsdag.titel || (trainingsdag.datum | lgDate: 'fullDay')}}
           </td>
         </tr>
         <tr class="omschrijvingrij" [class.eigen-training]="eigenTraining">
-          <td *ngFor="let groep of ['A', 'B', 'C']">
+          <td *ngFor="let groep of groepen">
             <div class="omschrijving">{{trainingsdag[groep].omschrijving}}</div>
             <div class="locatie" *ngIf="toonLocatie(trainingsdag, groep)"
                  [class.volle-regel]="locatieVolleRegel(trainingsdag, groep)">{{trainingsdag[groep].locatie}}</div>

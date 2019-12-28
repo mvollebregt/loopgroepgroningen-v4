@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {TrainingsschemaService} from './trainingsschema.service';
 import {Observable} from 'rxjs';
 import {Trainingsweek} from './model/trainingsweek';
@@ -11,17 +11,21 @@ import {Trainingsdag} from './model/trainingsdag';
 })
 export class TrainingsschemaPage implements OnInit {
 
-  private trainingsschema: Observable<Trainingsweek[]>;
+  trainingsschema: Observable<Trainingsweek[]>;
+  groepen: ('A' | 'B' | 'C')[] = ['C'];
 
   constructor(private trainingsschemaService: TrainingsschemaService) {
   }
 
   ngOnInit(): void {
     this.trainingsschema = this.trainingsschemaService.getTrainingsschema();
+    this.detectSize();
   }
 
   toonLocatie(trainingsdag: Trainingsdag, groep: 'A' | 'B' | 'C'): boolean {
-    if (!TrainingsschemaPage.getLocatie(trainingsdag, groep)) {
+    if (this.groepen.length === 1) {
+      return true;
+    } else if (!TrainingsschemaPage.getLocatie(trainingsdag, groep)) {
       return false;
     } else if (groep === 'A') {
       return true;
@@ -31,7 +35,17 @@ export class TrainingsschemaPage implements OnInit {
   }
 
   locatieVolleRegel(trainingsdag: Trainingsdag, groep: string) {
-    return groep === 'A' && TrainingsschemaPage.enkeleLocatie(trainingsdag);
+    return this.groepen.length === 3 && groep === 'A' && TrainingsschemaPage.enkeleLocatie(trainingsdag);
+  }
+
+  @HostListener('window:resize')
+  detectSize(): void {
+    const width = window.innerWidth;
+    if (width < 520) {
+      this.groepen = ['C'];
+    } else {
+      this.groepen = ['A', 'B', 'C'];
+    }
   }
 
   private static enkeleLocatie(trainingsdag: Trainingsdag) {
