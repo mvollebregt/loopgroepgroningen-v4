@@ -28,7 +28,6 @@ export class TrainingsschemaPage extends Destroyable implements OnInit {
     ).subscribe(schema => {
       this.volledigTrainingsschema = schema;
       const datum = this.dateService.now().set({hour: 0, minute: 0, second: 0});
-      console.log(datum);
       this.trainingsschema = TrainingsschemaPage.trainingenVanafDatum(schema, datum);
     });
     this.detectSize();
@@ -40,6 +39,7 @@ export class TrainingsschemaPage extends Destroyable implements OnInit {
   }
 
   @HostListener('window:resize')
+  @HostListener('window:orientationchange')
   detectSize(): void {
     const width = window.innerWidth;
     if (width < 520) {
@@ -86,7 +86,6 @@ export class TrainingsschemaPage extends Destroyable implements OnInit {
         trainingsdagen: []
       };
       for (const trainingsdag of trainingsweek.trainingsdagen) {
-        console.log(datum.diff(DateTime.fromISO(trainingsdag.datum), 'days').days);
         if (datum.diff(DateTime.fromISO(trainingsdag.datum), 'days').days <= 0) {
           resultaatweek.trainingsdagen.push(trainingsdag);
         }
@@ -95,7 +94,6 @@ export class TrainingsschemaPage extends Destroyable implements OnInit {
         trainingsschema.push(resultaatweek);
       }
     }
-    console.log(trainingsschema);
     return trainingsschema;
   }
 }

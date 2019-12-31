@@ -34,11 +34,11 @@ export class InputComponent implements ControlValueAccessor, Validator, OnDestro
   @Input() type = 'text';
 
   control: AbstractControl;
+  onBlur: () => any;
 
   private errors = new Subject<ValidationErrors | null>();
   private validator: ValidatorFn;
   private destroy = new Subject<void>();
-  private onBlur: () => any;
 
   constructor() {
     this.control = new FormControl(null, null, () => this.errors.pipe(skip(1), take(1)));

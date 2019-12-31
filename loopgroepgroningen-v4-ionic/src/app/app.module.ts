@@ -16,6 +16,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthModule} from './shared/auth/auth.module';
 import {AngularFireFunctionsModule, FUNCTIONS_ORIGIN} from '@angular/fire/functions';
 import {HttpClientModule} from '@angular/common/http';
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,10 +27,11 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireFunctionsModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     StatusBar,
