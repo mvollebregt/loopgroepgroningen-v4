@@ -12,6 +12,10 @@
 
 // theme
 
+body {
+  background-color: var(--lg-oranje);
+}
+
 ion-toolbar,
 ion-menu ion-content {
   --background: var(--lg-grijs);

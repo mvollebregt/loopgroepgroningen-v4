@@ -1,6 +1,10 @@
 <lg-page pageTitle="Trainingsschema">
 
-  <table *ngIf="trainingsschema | async as trainingsschema">
+  <ion-refresher slot="fixed" (ionRefresh)="toonOudereTrainingen($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <table *ngIf="trainingsschema">
     <ng-container *ngFor="let trainingsweek of trainingsschema; let eersteWeek = first">
       <tr class="weekrij">
         <td class="week">

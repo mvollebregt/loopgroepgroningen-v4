@@ -1,25 +1,52 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {TrainingsschemaService} from './trainingsschema.service';
-import {Observable} from 'rxjs';
 import {Trainingsweek} from './model/trainingsweek';
 import {Trainingsdag} from './model/trainingsdag';
+import {takeUntil} from 'rxjs/operators';
+import {DateService} from '../shared/datetime/date.service';
+import {DateTime} from 'luxon';
+import {Destroyable} from '../shared/components/destroyable';
 
 @Component({
   selector: 'lg-trainingsschema',
   templateUrl: './trainingsschema.page.html',
   styleUrls: ['./trainingsschema.page.scss']
 })
-export class TrainingsschemaPage implements OnInit {
+export class TrainingsschemaPage extends Destroyable implements OnInit {
 
-  trainingsschema: Observable<Trainingsweek[]>;
+  volledigTrainingsschema: Trainingsweek[];
+  trainingsschema: Trainingsweek[];
   groepen: ('A' | 'B' | 'C')[] = ['C'];
 
-  constructor(private trainingsschemaService: TrainingsschemaService) {
+  constructor(private trainingsschemaService: TrainingsschemaService, private dateService: DateService) {
+    super();
   }
 
   ngOnInit(): void {
-    this.trainingsschema = this.trainingsschemaService.getTrainingsschema();
+    this.trainingsschemaService.getTrainingsschema().pipe(
+      takeUntil(this.destroy)
+    ).subscribe(schema => {
+      this.volledigTrainingsschema = schema;
+      const datum = this.dateService.now().set({hour: 0, minute: 0, second: 0});
+      console.log(datum);
+      this.trainingsschema = TrainingsschemaPage.trainingenVanafDatum(schema, datum);
+    });
     this.detectSize();
+  }
+
+  toonOudereTrainingen(event: any) {
+    this.trainingsschema = this.volledigTrainingsschema;
+    event.target.complete();
+  }
+
+  @HostListener('window:resize')
+  detectSize(): void {
+    const width = window.innerWidth;
+    if (width < 520) {
+      this.groepen = ['C'];
+    } else {
+      this.groepen = ['A', 'B', 'C'];
+    }
   }
 
   toonLocatie(trainingsdag: Trainingsdag, groep: 'A' | 'B' | 'C'): boolean {
@@ -38,16 +65,6 @@ export class TrainingsschemaPage implements OnInit {
     return this.groepen.length === 3 && groep === 'A' && TrainingsschemaPage.enkeleLocatie(trainingsdag);
   }
 
-  @HostListener('window:resize')
-  detectSize(): void {
-    const width = window.innerWidth;
-    if (width < 520) {
-      this.groepen = ['C'];
-    } else {
-      this.groepen = ['A', 'B', 'C'];
-    }
-  }
-
   private static enkeleLocatie(trainingsdag: Trainingsdag) {
     const locatieA = TrainingsschemaPage.getLocatie(trainingsdag, 'A');
     const locatieB = TrainingsschemaPage.getLocatie(trainingsdag, 'B');
@@ -60,4 +77,25 @@ export class TrainingsschemaPage implements OnInit {
     return training && training.locatie;
   }
 
+  private static trainingenVanafDatum(schema: Trainingsweek[], datum: DateTime): Trainingsweek[] {
+    const trainingsschema = [] as Trainingsweek[];
+    for (const trainingsweek of schema) {
+      const resultaatweek: Trainingsweek = {
+        weeknummer: trainingsweek.weeknummer,
+        weektype: trainingsweek.weektype,
+        trainingsdagen: []
+      };
+      for (const trainingsdag of trainingsweek.trainingsdagen) {
+        console.log(datum.diff(DateTime.fromISO(trainingsdag.datum), 'days').days);
+        if (datum.diff(DateTime.fromISO(trainingsdag.datum), 'days').days <= 0) {
+          resultaatweek.trainingsdagen.push(trainingsdag);
+        }
+      }
+      if (resultaatweek.trainingsdagen.length > 0) {
+        trainingsschema.push(resultaatweek);
+      }
+    }
+    console.log(trainingsschema);
+    return trainingsschema;
+  }
 }
