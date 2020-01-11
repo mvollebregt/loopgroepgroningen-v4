@@ -65,15 +65,25 @@ export class TrainingsschemaService {
               if (!rij[index] && veld !== 'trainer') {
                 // Als het veld leeg is, en niet het trainerveld is, dan moeten we de waarde kopieren uit één van de
                 // twee regels daarboven.
-                training[veld] = cellen[rijnummer - 1][index] || cellen[rijnummer - 2][index] || undefined;
+                training[veld] =
+                  (uppercase >= 'B' && cellen[rijnummer - 1][index]) ||
+                  (uppercase >= 'C' && cellen[rijnummer - 2][index]) ||
+                  undefined;
               }
             }
-            trainingsweek.trainingsdagen[i][uppercase] = training;
+            // als een training geen omschrijving heeft is het een lege cel
+            if (training.omschrijving && training.omschrijving.trim()) {
+              trainingsweek.trainingsdagen[i][uppercase] = training;
+            }
           }
           if (uppercase === 'C') {
             // De regel voor de C-groep is altijd de laatste regel van een trainingsweek. We voegen de trainingsweek
             // toe aan de array, en beginnen met een nieuwe trainingsweek.
-            trainingsweken.push(trainingsweek);
+            // Verwijder eerst lege trainingsdagen.
+            const trainingsdagen = trainingsweek.trainingsdagen.filter(trainingsdag => trainingsdag.A || trainingsdag.B || trainingsdag.C);
+            if (trainingsdagen.length > 0) {
+              trainingsweken.push({...trainingsweek, trainingsdagen});
+            }
             trainingsweek = {trainingsdagen: [] as Trainingsdag[]} as Trainingsweek;
           }
           // Met het lezen van alle trainingen voor een groep zijn we klaar met de regel, en willen we meteen door naar
@@ -114,6 +124,26 @@ export class TrainingsschemaService {
         trainingsweek.trainingsdagen.push({datum: plus2dagen.toISODate(), titel: 'eigen 3e training'});
       }
     }
+    console.log(JSON.stringify(this.schemaOudeFormaat(trainingsweken), null, 2));
     return trainingsweken;
+  }
+
+  private schemaOudeFormaat(trainingsweken: Trainingsweek[]) {
+    return {
+      A: this.schemaVoorGroep(trainingsweken, 'A'),
+      B: this.schemaVoorGroep(trainingsweken, 'B'),
+      C: this.schemaVoorGroep(trainingsweken, 'C')
+    };
+  }
+
+  private schemaVoorGroep(trainingsweken: Trainingsweek[], groep: string) {
+    return trainingsweken.map(week => ({
+      titel: `Week ${week.weeknummer} - ${week.weektype}`,
+      inhoud: week.trainingsdagen.map(dag => ({
+        datum: dag.datum,
+        omschrijving: dag[groep].omschrijving,
+        locatie: dag[groep].locatie
+      }))
+    }));
   }
 }
