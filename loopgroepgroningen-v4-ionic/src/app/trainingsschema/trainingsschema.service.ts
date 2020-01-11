@@ -139,10 +139,11 @@ export class TrainingsschemaService {
   private schemaVoorGroep(trainingsweken: Trainingsweek[], groep: string) {
     return trainingsweken.map(week => ({
       titel: `Week ${week.weeknummer} - ${week.weektype}`,
-      inhoud: week.trainingsdagen.map(dag => ({
+      inhoud: week.trainingsdagen.map((dag, index) => ({
+        ...index === 2 ? {titel: 'eigen 3e training'} : undefined,
         datum: dag.datum,
         omschrijving: dag[groep].omschrijving,
-        locatie: dag[groep].locatie
+        locatie: dag[groep].locatie,
       }))
     }));
   }
