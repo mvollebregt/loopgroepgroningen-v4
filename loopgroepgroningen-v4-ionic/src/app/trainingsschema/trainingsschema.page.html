@@ -24,7 +24,8 @@
         </tr>
         <tr class="omschrijvingrij" [class.eigen-training]="eigenTraining">
           <td *ngFor="let groep of groepen">
-            <div class="omschrijving">{{trainingsdag[groep].omschrijving}}</div>
+            <div
+                class="omschrijving">{{trainingsdag[groep].omschrijving}} {{ trainingsdag.algemeen ? '(' + trainingsdag.algemeen + ')' : ''}}</div>
             <div class="locatie" *ngIf="toonLocatie(trainingsdag, groep)"
                  [class.volle-regel]="locatieVolleRegel(trainingsdag, groep)">{{trainingsdag[groep].locatie}}</div>
           </td>

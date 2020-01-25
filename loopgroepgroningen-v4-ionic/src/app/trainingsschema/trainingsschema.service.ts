@@ -52,6 +52,15 @@ export class TrainingsschemaService {
         if (/^\d+$/.test(cel)) {
           // Als de cel alleen een getal bevat is dat het weeknummer. Dat slaan we op in de huidige trainingsweek.
           trainingsweek.weeknummer = parseInt(uppercase, 10);
+          // Bij een weeknummer kan algemene data staan die voor zowel A, B als C geldt
+          for (let i = 0; i < trainingsmetadata.length; i++) {
+            const omschrijvingIndex = trainingsmetadata[i].omschrijving;
+            if (omschrijvingIndex) {
+              if (trainingsweek.trainingsdagen[i] && rij[omschrijvingIndex]) {
+                trainingsweek.trainingsdagen[i].algemeen = rij[omschrijvingIndex].trim();
+              }
+            }
+          }
         } else if (uppercase === 'O' || uppercase === 'I' || uppercase === 'H') {
           // Als de cel alleen O, I of H bevat, dan is dat het weektype. Dat slaan we op in de huidige trainingsweek.
           trainingsweek.weektype = TrainingsschemaService.weektypes.find(weektype => weektype[0].toUpperCase() === uppercase);
@@ -142,7 +151,7 @@ export class TrainingsschemaService {
       inhoud: week.trainingsdagen.map((dag, index) => ({
         ...index === 2 ? {titel: 'eigen 3e training'} : undefined,
         datum: dag.datum,
-        omschrijving: dag[groep].omschrijving,
+        omschrijving: dag[groep].omschrijving + (dag.algemeen ? ` (${dag.algemeen})` : ''),
         locatie: dag[groep].locatie,
       }))
     }));
